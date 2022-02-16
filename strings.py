@@ -45,3 +45,58 @@ while a < 50 :
     a = a+1
 print('***********')
 print('********')
+#for loop
+n = 4
+for i in range(0, n):
+    print(i)
+print('**************')
+n= [6, 5, 3, 8, 4, 2, 5, 4, 11]
+# variable to store the sum
+sum = 0
+# iterate over the list
+for val in n:
+    sum = sum+val
+print("The sum is", sum)
+print('**************')
+#for loop in list
+car=["hundai","swift","lumbo"]
+for x in car:
+    print(x)
+    if x=="swift":
+        break
+    else:
+        continue
+#list operations
+l=list (input('enter list of numbers for operations: '))
+print(l)
+#append()	adds an element to the end of the list
+l.append('hello')
+print(l)
+print(l[1])
+#change list element
+l[1]= 999
+#delete list element
+l.remove('hello')
+print(l)
+del (l[1])
+print(l)
+#insert() method
+l.extend([0,0])
+l.insert(5,7)
+print(l)
+#count fun
+print(l.count(5))
+#recursive function(a function call it self)
+def factorial(x):
+    """This is a recursive function
+    to find the factorial of an integer"""
+
+    if x == 1:
+        return 1
+    else:
+        return (x * factorial(x-1))
+num = int(input('enter a number to find factorial: '))
+print("The factorial of", num, "is", factorial(num))
+#methods
+#class
+#oops concept
