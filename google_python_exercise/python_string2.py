@@ -15,7 +15,7 @@
 # add 'ly' instead.
 # If the string length is less than 3, leave it unchanged.
 # Return the resulting string.
-#def verbing(s):
+def verbing(s):
     if len(s) >= 3 :
         if s[-3:] == 'ing' :
             a = s[0:-3]
@@ -36,9 +36,12 @@
 # Return the resulting string.
 # So 'This dinner is not that bad!' yields:
 # This dinner is good!
-#def not_bad(s):
- # # +++your code here+++
-  #return
+def notbad(s):
+  n = s.find('not')
+  b = s.find('bad')
+  if n > b:
+    s = s.replace(s[n:(b+3)], 'good')
+    print(s)
 # F. front_back
 # Consider dividing a string into two halves.
 # If the length is even, the front and back halves are the same length.
@@ -46,18 +49,27 @@
 # e.g. 'abcde', the front half is 'abc', the back half 'de'.
 # Given 2 strings, a and b, return a string of the form
 #  a-front + b-front + a-back + b-back
-def front_back(a):
-    len(a)/ 2
-    if len(a)%2 ==0:
-            print(a)
-    else:
-        b=len(a)/2
-        c=len(a)/2
-        #if len(a)%2==1:
-        b=a[-1:]
-        c=a[-1:]
-            #print(a[0:2]+a[-1:]+a[2:])
-        print(a[0:-2]+a[0:-2]+b[-1:]+c[-1:])
+def frontback(a, b):
+  alen = len(a)
+  blen = len(b)
+
+  if alen % 2 == 0:
+    aindex = alen // 2
+  else:
+    aindex = (alen // 2) + 1
+
+  if blen % 2 == 0:
+    bindex = blen // 2
+  else:
+    bindex = (blen // 2) + 1
+
+  afront = a[0:aindex]
+  aback = a[aindex:]
+
+  bfront = b[0:bindex]
+  bback = b[bindex:]
+
+  print( afront + bfront + aback + bback)
 ###########################
  # print( )
  # print(  'not_bad')
@@ -66,9 +78,13 @@ def front_back(a):
   #test(not_bad('This tea is not hot'), 'This tea is not hot')
   #test(not_bad("It's bad yet not"), "It's bad yet not")
 #########################
-a=input('enter a string ')
-front_back(a)
+s=input('enter a string follows not bad : ')
+notbad(s)
+###################################
+a=input('enter a  odd or even string and sort it: ')
+b=input('enter a odd or even strings to do some string operations ')
+frontback(a, b)
 ##################################
 s=input('enter a string to test verbing func: ')
 verbing(s)
-################################
+###############################
