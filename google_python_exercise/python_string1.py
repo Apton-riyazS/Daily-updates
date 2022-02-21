@@ -2,30 +2,6 @@
 # Copyright 2010 Google Inc.
 # Licensed under the Apache License, Version 2.0
 # http://www.apache.org/licenses/LICENSE-2.0
-#a = 5
-#a='hello'+str(6)
-#print(a)
-#print(len(a))
-################################
-import sys
-def main(name):
-    if name=='alice' or name=='rog':
-       name=name+str('!!!!!!!!')
-       #print('name',name)
-    else:  
-        name = name+'???????'
-    print('name',name)
-#name=str(input('enter your name: '))
-#main(name)   
-#print('********************')
-#########################################
-#a='hypper'
-#print( a.lower())
-#print(a.find('p'))
-#print (a[0])
-########################################
-#print('hi %s i have %d cake'%(a,42))
-########################################
 
 # Google's Python Class
 # http://code.google.com/edu/languages/google-python-class/
@@ -46,27 +22,28 @@ def main(name):
 # passed in. However, if the count is 10 or more, then use the word 'many'
 # instead of the actual count.
 # So donuts(5) returns 'Number of donuts: 5'
-# and donuts(23) return#def donut(count):
-def donut(count):
-    if count < 10:
-        print('number of donuts : ',int(count))
-        count 
-    else:
-        count = 'many'
-    print('number of donut is :',count)
+# and donuts(23) returns 'Number of donuts: many'
+def donuts(count):
+  if count > 9:
+    a = 'many'
+  else:
+    a = str(count)
+
+  return 'Number of donuts: ' + a
+
+
 # B. both_ends
 # Given a string s, return a string made of the first 2
 # and the last 2 chars of the original string,
 # so 'spring' yields 'spng'. However, if the string length
 # is less than 2, return instead the empty string.
-def bothends(s):
-    if len(s) < 2:
-        print('empty')
-    else:
-        a= s[0:2]
-        b=s[-2:]
-        s=a+b
-        print(s)
+def both_ends(s):
+  if len(s) < 2:
+    return ''
+
+  return s[0:2] + s[-2:]
+
+
 # C. fix_start
 # Given a string s, return a string
 # where all occurences of its first char have
@@ -76,16 +53,15 @@ def bothends(s):
 # Assume that the string is length 1 or more.
 # Hint: s.replace(stra, strb) returns a version of string s
 # where all instances of stra have been replaced by strb.
-def fixstart(f):
-    if len(f) < 1:
-        print('empty')
-    else:
-        a= f[0:2]
-        b=f[-2:]
-        c=b.replace(b,a)
-        d='*'
-        f=c+d+b
-        print(f)
+def fix_start(s):
+  char = s[0]
+  #length = len(s)
+  s = s.replace(char, '*')
+  s = char + s[1:]
+
+  return s
+
+
 # D. MixUp
 # Given strings a and b, return a single string with a and b separated
 # by a space '<a> <b>', except swap the first 2 chars of each string.
@@ -93,34 +69,52 @@ def fixstart(f):
 #   'mix', pod' -> 'pox mid'
 #   'dog', 'dinner' -> 'dig donner'
 # Assume a and b are length 2 or more.
-def mixup(a,b):
-    if len(a) < 2 :
-        if len(b) < 2 :
-           print('sorry')
-    else:
-        f = a[0:2]
-        l = b[-2:]
-        c = a+b
-        g = c[1:-1]
-        m = l+g+f
-        print('swapped string string',m)
+def mix_up(a, b):
+  newa = b[0:2] + a[2:]
+  newb = a[0:2] + b[2:]
+
+  return newa + ' ' + newb
+
+
+# Provided simple test() function used in main() to print
+# what each function returns vs. what it's supposed to return.
+def test(got, expected):
+  if got == expected:
+    prefix = ' OK '
+  else:
+    prefix = '  X '
+  print ('%s got: %s expected: %s' % (prefix, repr(got), repr(expected)))
+
+
 # Provided main() calls the above functions with interesting inputs,
 # using test() to check if each result is correct or not.
-name=str(input('enter your name: '))
-main(name)   
-print('********************')
-####################################
-count=int(input('enter the number of donut: '))
-donut(count)
-################################
-s=str(input('enter a  string to test bothend: '))
-bothends(s)
-####################################
-f=str(input('enter a  string to test fixstart: '))
-fixstart(f)
-#################################
-a=str(input('enter a string to test mixup '))
-b=str (input('enter a string to test mixup '))
-mixup(a,b) 
-############################################
-#
+def main():
+  print ('donuts')
+  # Each line calls donuts, compares its result to the expected for that call.
+  test(donuts(4), 'Number of donuts: 4')
+  test(donuts(9), 'Number of donuts: 9')
+  test(donuts(10), 'Number of donuts: many')
+  test(donuts(99), 'Number of donuts: many')
+
+  print ('both_ends')
+  test(both_ends('spring'), 'spng')
+  test(both_ends('Hello'), 'Helo')
+  test(both_ends('a'), '')
+  test(both_ends('xyz'), 'xyyz')
+
+  print ('fix_start')
+  test(fix_start('babble'), 'ba**le')
+  test(fix_start('aardvark'), 'a*rdv*rk')
+  test(fix_start('google'), 'goo*le')
+  test(fix_start('donut'), 'donut')
+
+  print ('mix_up')
+  test(mix_up('mix', 'pod'), 'pox mid')
+  test(mix_up('dog', 'dinner'), 'dig donner')
+  test(mix_up('gnash', 'sport'), 'spash gnort')
+  test(mix_up('pezzy', 'firm'), 'fizzy perm')
+
+
+# Standard boilerplate to call the main() function.
+if __name__ == '__main__':
+  main()

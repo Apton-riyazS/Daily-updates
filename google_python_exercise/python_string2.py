@@ -1,13 +1,13 @@
-#!/usr/bin/python2.4 -tt
+#!/usr/bin/python -tt
 # Copyright 2010 Google Inc.
 # Licensed under the Apache License, Version 2.0
 # http://www.apache.org/licenses/LICENSE-2.0
-#
+
 # Google's Python Class
 # http://code.google.com/edu/languages/google-python-class/
-#
+
 # Additional basic string exercises
-#
+
 # D. verbing
 # Given a string, if its length is at least 3,
 # add 'ing' to its end.
@@ -16,18 +16,17 @@
 # If the string length is less than 3, leave it unchanged.
 # Return the resulting string.
 def verbing(s):
-    if len(s) >= 3 :
-        if s[-3:] == 'ing' :
-            a = s[0:-3]
-            print(a+str('ly'))
-        else:
-            #a = s[0:-3]
-            print(s+ str('ing'))
+  length = len(s)
+
+  if length > 2:
+    if s[-3:] == 'ing':
+      s += 'ly'
     else:
-        print('string is : ',s)
-#s=input('enter a string to test verbing func: ')
-#verbing(s)
-#
+      s += 'ing'
+
+  return s
+
+
 # E. not_bad
 # Given a string, find the first appearance of the
 # substring 'not' and 'bad'. If the 'bad' follows
@@ -36,12 +35,16 @@ def verbing(s):
 # Return the resulting string.
 # So 'This dinner is not that bad!' yields:
 # This dinner is good!
-def notbad(s):
-  n = s.find('not')
-  b = s.find('bad')
-  if n > b:
-    s = s.replace(s[n:(b+3)], 'good')
-    print(s)
+def not_bad(s):
+  snot = s.find('not')
+  sbad = s.find('bad')
+
+  if sbad > snot:
+    s = s.replace(s[snot:(sbad+3)], 'good')
+
+  return s
+
+
 # F. front_back
 # Consider dividing a string into two halves.
 # If the length is even, the front and back halves are the same length.
@@ -49,7 +52,7 @@ def notbad(s):
 # e.g. 'abcde', the front half is 'abc', the back half 'de'.
 # Given 2 strings, a and b, return a string of the form
 #  a-front + b-front + a-back + b-back
-def frontback(a, b):
+def front_back(a, b):
   alen = len(a)
   blen = len(b)
 
@@ -69,22 +72,39 @@ def frontback(a, b):
   bfront = b[0:bindex]
   bback = b[bindex:]
 
-  print( afront + bfront + aback + bback)
-###########################
- # print( )
- # print(  'not_bad')
- # test(not_bad('This movie is not so bad'), 'This movie is good')
-  #test(not_bad('This dinner is not that bad!'), 'This dinner is good!')
-  #test(not_bad('This tea is not hot'), 'This tea is not hot')
-  #test(not_bad("It's bad yet not"), "It's bad yet not")
-#########################
-s=input('enter a string follows not bad : ')
-notbad(s)
-###################################
-a=input('enter a  odd or even string and sort it: ')
-b=input('enter a odd or even strings to do some string operations ')
-frontback(a, b)
-##################################
-s=input('enter a string to test verbing func: ')
-verbing(s)
-###############################
+  return afront + bfront + aback + bback
+
+
+# Simple provided test() function used in main() to print
+# what each function returns vs. what it's supposed to return.
+def test(got, expected):
+  if got == expected:
+    prefix = ' OK '
+  else:
+    prefix = '  X '
+  print ('%s got: %s expected: %s' % (prefix, repr(got), repr(expected)))
+
+
+# main() calls the above functions with interesting inputs,
+# using the above test() to check if the result is correct or not.
+def main():
+  print ('verbing')
+  test(verbing('hail'), 'hailing')
+  test(verbing('swiming'), 'swimingly')
+  test(verbing('do'), 'do')
+
+  print
+  print ('not_bad')
+  test(not_bad('This movie is not so bad'), 'This movie is good')
+  test(not_bad('This dinner is not that bad!'), 'This dinner is good!')
+  test(not_bad('This tea is not hot'), 'This tea is not hot')
+  test(not_bad("It's bad yet not"), "It's bad yet not")
+
+  print
+  print ('front_back')
+  test(front_back('abcd', 'xy'), 'abxcdy')
+  test(front_back('abcde', 'xyz'), 'abcxydez')
+  test(front_back('Kitten', 'Donut'), 'KitDontenut')
+
+if __name__ == '__main__':
+  main()
