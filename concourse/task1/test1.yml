@@ -21,5 +21,5 @@ plan:
   - put: repo-main
     params:
       # specify the "repo-main" artifact as the location
-      repository: repo-main
+      repository: Daily-updates
 
