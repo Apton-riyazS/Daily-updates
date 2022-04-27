@@ -13,6 +13,6 @@ jobs:
   - get: git-test
     trigger: true
   - task: unit
-    file: 
+    file: Daily-updates/concourse/task1/test1.yml
 
 

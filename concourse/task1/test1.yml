@@ -16,4 +16,5 @@ inputs:
 plan:
   - get: git-test
     run:
-      path: 
+      path: Daily-updates/concourse/task1/test.sh
+
