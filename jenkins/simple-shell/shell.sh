@@ -6,6 +6,6 @@ now="$(date +'%d/%m/%Y')"
 printf "Current date in dd/mm/yyyy format %s\n" "$now"
  
 echo "Starting backup at $now, please wait..."
-echo 'This is a test' > /home/data.txt
+
 # command to backup scripts goes here
 # ...
