@@ -18,3 +18,8 @@ plan:
     run:
       path: Daily-updates/concourse/task1/test.sh
 
+  - put: repo-main
+    params:
+      # specify the "repo-main" artifact as the location
+      repository: repo-main
+
