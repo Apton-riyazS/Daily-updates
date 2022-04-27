@@ -1,0 +1,18 @@
+resources:
+- name: git-test
+  type: git
+  icon: github
+  check_every: 30m
+  source:
+    uri: https://github.com/Apton-riyazS/Daily-updates.git
+    branch: master
+
+jobs:
+- name: unit
+  plan:
+  - get: git-test
+    trigger: true
+  - task: unit
+    file: 
+
+

@@ -1,0 +1,19 @@
+---
+platform: linux
+
+image_resource:
+  type: registry-image
+  source:
+    repository: golang
+    tag: 1
+
+inputs:
+- name: git-test
+  type: git
+  source:
+    uri: https://github.com/Apton-riyazS/Daily-updates.git
+    branch: master
+plan:
+  - get: git-test
+    run:
+      path: 
