@@ -14,7 +14,7 @@ jobs:
     trigger: true
   - task: unit
     file: Daily-updates/concourse/task1/test1.yml
-  - put: repo-main
+  - put: Daily-updates
     params:
       # specify the "repo-main" artifact as the location
       repository: Daily-updates
