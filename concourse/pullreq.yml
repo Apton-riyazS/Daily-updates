@@ -10,7 +10,7 @@ resources:
   check_every: 10s
   # webhook_token: ((webhook-token))
   source:
-    repository:  Apton-riyazS/Daily-updates    
+    repository:  https://github.com/aswin-apton/jenkines-test.git     
     base_branch: master
     access_token: ((github-access-token))
 
